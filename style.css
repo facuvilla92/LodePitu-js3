@@ -1,0 +1,153 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+ul{
+    list-style-type: none;
+}
+img{
+    max-width: 100%;
+    border-radius: 1rem;
+}
+a{
+text-decoration: none;
+color: blue;
+}
+
+.contenedor{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    background-color: burlywood;
+}
+header{
+    color: brown;
+    font-size: 2rem;
+}
+.menu{
+    padding: 2rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+.lista-menu{
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+.lista-menu.active{
+    background-color: white ;
+    color: white;
+    border-radius: 3rem;
+    /* width: 100%; */
+}
+
+main{
+    background-color: brown;
+    margin: 1rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-left: 0;
+}
+.contenedor-cortes{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+.titulo{
+    margin-bottom: 1rem;
+}
+.detalles{
+    background-color: burlywood;
+    color: brown;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-top: -2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+.productos-cortes{
+    text-align: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+.cortes-precios{
+    text-align: center;
+    font-size: 1rem;
+}
+.agregar-corte{
+    text-align: center;
+    font-size: 1rem;
+    background-color: brown;
+    color: white;
+    padding: .5rem;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.agregar-corte:hover{
+    background-color: rgb(79, 5, 20);
+    color: white;
+}
+.carrito-corte{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.carrito-img{
+    width: 5.5rem;
+}
+.carrito-eliminar{
+    background-color: #deb887;
+    font-size: 1.5rem;
+    color: black;
+    cursor: pointer;
+    border-radius: 1.5rem;
+}
+.botones-abajo{
+    display: flex;
+    justify-content: space-between;
+}
+.botones-der{
+    display: flex;
+    gap: 1rem;
+}
+.bot-carrito{
+    background-color: #deb887;
+    color: black;
+    padding: .5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.disabled{
+    display: none;
+}
+.numerito{
+    background-color: white;
+    padding: 0 .25rem;
+    color: brown;
+    border-radius: 0.5rem;
+}
+.carrito-vacio{
+    margin-left: 2rem;
+    margin-top: 3rem;
+}
+.div-form{
+    font-size: 2.5rem;
+}
+.cuadraditos{
+    font-size: 1.5rem;
+}
+
+main.boton-claro{
+    background-color:aquamarine;
+}
