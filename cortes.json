@@ -1,0 +1,45 @@
+[
+    {
+        "id": "Asado",
+        "titulo": "asado",
+        "imagen": "../img/asado.jpg",
+        "precio": 6000
+    },
+    {
+        "id": "Vacio",
+        "titulo": "vacio",
+        "imagen": "../img/vacio.jpg",
+        "precio": 6800
+    },
+    {
+        "id": "Entrana",
+        "titulo": "entrana",
+        "imagen": "../img/entraña.jpg",
+        "precio": 7000
+    },
+    {
+        "id": "TapadeAsado",
+        "titulo": "tapa de Asado",
+        "imagen": "../img/tapa de asado.jpg",
+        "precio": 6000
+    },
+    {
+        "id": "Matambre",
+        "titulo": "matambre",
+        "imagen": "../img/matambre.jpg",
+        "precio": 5800
+    },
+    {
+        "id": "Nalga",
+        "titulo": "nalga",
+        "imagen": "../img/nalga.jpg",
+        "precio": 7000
+    },
+    {
+        "id": "Cuadrada",
+        "titulo": "cuadrada",
+        "imagen": "../img/cuadrada.jpg",
+        "precio": 7000
+    }
+
+]

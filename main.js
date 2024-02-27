@@ -1,92 +1,93 @@
-const cortesArray = [
-    {
-        id: "asad-o",
-        titulo: "asado",
-        imagen: "./imagenes/asado.jpg",
-        precio: 6000
-    },
-    {
-        id: "vaci-0",
-        titulo: "vacio",
-        imagen: "./imagenes/vacio.jpg",
-        precio: 6800
-    },
-    {
-        id: "entran-a",
-        titulo: "entrana",
-        imagen: "./imagenes/entraña.jpg",
-        precio: 7000
-    },
-    {
-        id: "tapa-de-asad-o",
-        titulo: "tapa de Asado",
-        imagen: "./imagenes/tapa de asado.jpg",
-        precio: 6000
-    },
-    {
-        id: "matambr-e",
-        titulo: "matambre",
-        imagen: "./imagenes/matambre.jpg",
-        precio: 5800
-    },
-    {
-        id: "nalg-a",
-        titulo: "nalga",
-        imagen: "./imagenes/nalga.jpg",
-        precio: 7000
-    },
-    {
-        id: "cuadrad-a",
-        titulo: "cuadrada",
-        imagen: "./imagenes/cuadrada.jpg",
-        precio: 7000
-    },
+let productos = [];
+fetch("./cortes.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data;
+        cargarCortes(productos);
+    })
+    .catch(error => {
+        console.error('Error al cargar el archivo JSON:', error);
+    });
 
-];
+const ContenedorCortes = document.querySelector("#contenedorCortes");
+let botonesAgregar = [];
+let productosDelCarrito = JSON.parse(localStorage.getItem("productos-en-carrito")) || [];
+const numerito = document.querySelector("#numerito");
 
-const listaCortes = document.querySelector("#contenedorCortes");
-const listaMenu = document.querySelectorAll(".lista-menu");
-let botonesAgregar = document.querySelectorAll(".agregar-corte");
-
-function cargarCortes() {
-    cortesArray.forEach(corte => {
+function cargarCortes(productos) {
+    productos.forEach(producto => { 
         const div = document.createElement("div");
         div.classList.add("Corte");
         div.innerHTML = `
-            <img class="fotos" src="${corte.imagen}" alt="${corte.titulo}">
+            <img class="fotos" src="${producto.imagen}" alt="${producto.titulo}">
             <div class="detalles">
-                <h3 class="productos-cortes">${corte.titulo}</h3>
-                <h4 class="cortes-precios">${corte.precio}</h4>
-                <button class="agregar-corte" ${corte.id}">agregar</button>
+                <h3 class="productos-cortes">${producto.titulo}</h3>
+                <h4 class="cortes-precios">${producto.precio}</h4>
+                <button class="agregar-corte" id="${producto.id}">agregar</button>
             </div>
         `;
-        listaCortes.appendChild(div);
+        ContenedorCortes.appendChild(div);
     });
     actualizarBotones();
 }
-cargarCortes();
 
 function actualizarBotones() {
     botonesAgregar = document.querySelectorAll(".agregar-corte");
 
     botonesAgregar.forEach(boton => {
         boton.addEventListener("click", agregarAlCarrito);
-        const id = boton.getAttribute("data-id");
-
-        console.log(id);
     });
 }
 
-listaMenu.forEach(boton => {
-    boton.addEventListener("click", (e) => {
-        listaMenu.forEach(boton => boton.classList.remove("active"));
-        e.currentTarget.classList.add("active");
-    })
-});
-
-const productosDelCarrito = [];
-
 function agregarAlCarrito(e) {
-    const id = e.currentTarget.getAttribute("data-id");
-    console.log(id)
+    Toastify({
+        text: "se agrego al carrito",
+        duration: 3000,
+        destination: "https://github.com/apvarun/toastify-js",
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+          background: "linear-gradient(to right, #00b09b, #96c93d)",
+          borderRadius: "2rem"
+        },
+        onClick: function(){}
+      }).showToast();
+
+    const id = e.currentTarget.id;
+
+    const producto = productos.find(item => item.id === id);
+
+    const productoExistente = productosDelCarrito.find(item => item.id === id);
+
+    if (productoExistente) {
+        productoExistente.cantidad++;
+    } else {
+        productosDelCarrito.push({
+            id: producto.id,
+            titulo: producto.titulo,
+            imagen: producto.imagen,
+            precio: producto.precio,
+            cantidad: 1
+        });
+    }
+    actualizarNumerito();
+
+    localStorage.setItem("productos-en-carrito", JSON.stringify(productosDelCarrito))
 }
+
+function actualizarNumerito() {
+    let totalCantidad = 0;
+    if (productosDelCarrito) {
+        totalCantidad = productosDelCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+    }
+    numerito.textContent = totalCantidad.toString();
+}
+
+cargarCortes(productos);
+
+
+
+
