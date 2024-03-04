@@ -151,3 +151,12 @@ main{
 main.boton-claro{
     background-color:aquamarine;
 }
+
+.div-container{
+    padding: 1rem;
+}
+
+.selectores{
+    margin: 1rem;
+    max-width: 100vh;
+}
